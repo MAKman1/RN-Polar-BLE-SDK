@@ -1,4 +1,0 @@
-[submodule "polar-ble-sdk"]
-	path = polar-ble-sdk
-	url = https://github.com/polarofficial/polar-ble-sdk
-  ignore = dirty
