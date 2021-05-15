@@ -1,4 +1,4 @@
-# react-native-polar-ble-sdk
+# RN-Polar-Ble-Sdk
 
 A React Native Wrapper for [Polar's BLE SDK](https://github.com/polarofficial/polar-ble-sdk)
 
@@ -6,7 +6,7 @@ A React Native Wrapper for [Polar's BLE SDK](https://github.com/polarofficial/po
 
 This should work :
 
-`$ npm install git+https://github.com/MAKman1/RN-Polar-BLE-SDK.git --save`
+`$ npm install rn-polar-ble-sdk --save`
 
 Though I only used this repo as a local git submodule at the moment
 
@@ -19,7 +19,7 @@ import {
   NativeEventEmitter,
 } from 'react-native';
 
-import PolarBleSdk from 'react-native-polar-ble-sdk';
+import PolarBleSdk from 'rn-polar-ble-sdk';
 
 const polarEmitter = new NativeEventEmitter(NativeModules.PolarBleSdkModule);
 

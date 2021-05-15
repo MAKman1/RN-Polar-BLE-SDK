@@ -1,8 +1,8 @@
 {
-  "name": "react-native-polar-ble-sdk",
+  "name": "rn-polar-ble-sdk",
   "title": "React Native Polar Ble Sdk",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "RN Wrapper for polar's native SDKs",
   "main": "index.js",
   "files": [
     "README.md",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/josephlarralde/react-native-polar-ble-sdk.git",
-    "baseUrl": "https://github.com/josephlarralde/react-native-polar-ble-sdk"
+    "url": "git+https://github.com/MAKman1/RN-Polar-BLE-SDK.git",
+    "baseUrl": "https://github.com/MAKman1/RN-Polar-BLE-SDK"
   },
   "keywords": [
     "react-native"
   ],
   "author": {
-    "name": "Joseph Larralde",
-    "email": "joseph.larralde@gmail.com"
+    "name": "Arham Khan",
+    "email": "muhammadarhamkhan@gmail.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",

@@ -10,7 +10,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, NativeModules, NativeEventEmitter } from 'react-native';
-import PolarBleSdk from 'react-native-polar-ble-sdk';
+import PolarBleSdk from 'rn-polar-ble-sdk';
 
 const polarEmitter = new NativeEventEmitter(NativeModules.PolarBleSdkModule);
 
