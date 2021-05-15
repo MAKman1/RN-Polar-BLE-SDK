@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 
 ---
+
+## Unreleased
+
+* Nothing, yet.
+
+## [5.1.1](https://github.com/ReactiveX/RxSwift/releases/tag/5.1.1)
+
+* Make `NSTextView` not weak for Swift 5.2 and up.
+* Add `WKWebView` navigation delegate reactive extensions. #2144
+
 ## [5.1.0](https://github.com/ReactiveX/RxSwift/releases/tag/5.1.0)
 
 * Remove UIWebView Reactive Extensions due to [Apple's hard deprecation, starting April 2020](https://developer.apple.com/news/?id=12232019b). #2062

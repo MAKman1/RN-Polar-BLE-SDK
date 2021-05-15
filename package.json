@@ -1,7 +1,7 @@
 {
   "name": "rn-polar-ble-sdk",
   "title": "React Native Polar Ble Sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "RN Wrapper for polar's native SDKs",
   "main": "index.js",
   "files": [
@@ -9,7 +9,7 @@
     "android",
     "index.js",
     "ios",
-    "react-native-polar-ble-sdk.podspec"
+    "rn-polar-ble-sdk.podspec"
   ],
   "scripts": {
     "preinstall": "./ios/scripts/build_frameworks.sh",
