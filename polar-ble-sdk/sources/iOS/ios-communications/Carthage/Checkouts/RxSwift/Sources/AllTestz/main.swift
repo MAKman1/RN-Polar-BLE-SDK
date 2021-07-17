@@ -80,6 +80,19 @@ final class BehaviorSubjectTest_ : BehaviorSubjectTest, RxTestCase {
     ] }
 }
 
+final class BinderTests_ : BinderTests, RxTestCase {
+    #if os(macOS)
+    required override init() {
+        super.init()
+    }
+    #endif
+
+    static var allTests: [(String, (BinderTests_) -> () -> Void)] { return [
+    ("testBindingOnNonMainQueueDispatchesToMainQueue", BinderTests.testBindingOnNonMainQueueDispatchesToMainQueue),
+    ("testBindingOnMainQueueDispatchesToNonMainQueue", BinderTests.testBindingOnMainQueueDispatchesToNonMainQueue),
+    ] }
+}
+
 final class CompletableAndThenTest_ : CompletableAndThenTest, RxTestCase {
     #if os(macOS)
     required override init() {
@@ -119,6 +132,9 @@ final class CompletableTest_ : CompletableTest, RxTestCase {
     static var allTests: [(String, (CompletableTest_) -> () -> Void)] { return [
     ("testCompletable_Subscription_completed", CompletableTest.testCompletable_Subscription_completed),
     ("testCompletable_Subscription_error", CompletableTest.testCompletable_Subscription_error),
+    ("testCompletable_Subscription_onDisposed", CompletableTest.testCompletable_Subscription_onDisposed),
+    ("testCompletable_Subscription_onDisposed_completed", CompletableTest.testCompletable_Subscription_onDisposed_completed),
+    ("testCompletable_Subscription_onDisposed_error", CompletableTest.testCompletable_Subscription_onDisposed_error),
     ("testCompletable_create_completed", CompletableTest.testCompletable_create_completed),
     ("testCompletable_create_error", CompletableTest.testCompletable_create_error),
     ("testCompletable_create_disposing", CompletableTest.testCompletable_create_disposing),
@@ -218,6 +234,8 @@ final class DisposeBagTest_ : DisposeBagTest, RxTestCase {
     ("testDisposeBagInsert", DisposeBagTest.testDisposeBagInsert),
     ("testDisposeBagVaradicInsert", DisposeBagTest.testDisposeBagVaradicInsert),
     ("testDisposeBagVaradicInsertArray", DisposeBagTest.testDisposeBagVaradicInsertArray),
+    ("testDisposableBuilderInitializer", DisposeBagTest.testDisposableBuilderInitializer),
+    ("testDisposableBuilderInsert", DisposeBagTest.testDisposableBuilderInsert),
     ] }
 }
 
@@ -238,16 +256,27 @@ final class DriverTest_ : DriverTest, RxTestCase {
     ("testDrivingOrderOfSynchronousSubscriptions1", DriverTest.testDrivingOrderOfSynchronousSubscriptions1),
     ("testDrivingOrderOfSynchronousSubscriptions2", DriverTest.testDrivingOrderOfSynchronousSubscriptions2),
     ("testDriveObserver", DriverTest.testDriveObserver),
+    ("testDriveObservers", DriverTest.testDriveObservers),
     ("testDriveOptionalObserver", DriverTest.testDriveOptionalObserver),
+    ("testDriveOptionalObservers", DriverTest.testDriveOptionalObservers),
     ("testDriveNoAmbiguity", DriverTest.testDriveNoAmbiguity),
-    ("testDriveRelay", DriverTest.testDriveRelay),
-    ("testDriveOptionalRelay1", DriverTest.testDriveOptionalRelay1),
-    ("testDriveOptionalRelay2", DriverTest.testDriveOptionalRelay2),
-    ("testDriveRelayNoAmbiguity", DriverTest.testDriveRelayNoAmbiguity),
     ("testDriveBehaviorRelay", DriverTest.testDriveBehaviorRelay),
-    ("testDriveBehaviorRelay1", DriverTest.testDriveBehaviorRelay1),
-    ("testDriveBehaviorRelay2", DriverTest.testDriveBehaviorRelay2),
-    ("testDriveBehaviorRelay3", DriverTest.testDriveBehaviorRelay3),
+    ("testDriveBehaviorRelays", DriverTest.testDriveBehaviorRelays),
+    ("testDriveOptionalBehaviorRelay1", DriverTest.testDriveOptionalBehaviorRelay1),
+    ("testDriveOptionalBehaviorRelays1", DriverTest.testDriveOptionalBehaviorRelays1),
+    ("testDriveOptionalBehaviorRelay2", DriverTest.testDriveOptionalBehaviorRelay2),
+    ("testDriveOptionalBehaviorRelays2", DriverTest.testDriveOptionalBehaviorRelays2),
+    ("testDriveBehaviorRelayNoAmbiguity", DriverTest.testDriveBehaviorRelayNoAmbiguity),
+    ("testDriveReplayRelay", DriverTest.testDriveReplayRelay),
+    ("testDriveReplayRelays", DriverTest.testDriveReplayRelays),
+    ("testDriveOptionalReplayRelay1", DriverTest.testDriveOptionalReplayRelay1),
+    ("testDriveOptionalReplayRelays", DriverTest.testDriveOptionalReplayRelays),
+    ("testDriveOptionalReplayRelay2", DriverTest.testDriveOptionalReplayRelay2),
+    ("testDriveReplayRelays2", DriverTest.testDriveReplayRelays2),
+    ("testDriveReplayRelayNoAmbiguity", DriverTest.testDriveReplayRelayNoAmbiguity),
+    ("testDriveWithNext", DriverTest.testDriveWithNext),
+    ("testDriveWithError", DriverTest.testDriveWithError),
+    ("testDriveWithCompleted", DriverTest.testDriveWithCompleted),
     ] }
 }
 
@@ -285,6 +314,25 @@ final class HistoricalSchedulerTest_ : HistoricalSchedulerTest, RxTestCase {
     ] }
 }
 
+final class InfallibleTest_ : InfallibleTest, RxTestCase {
+    #if os(macOS)
+    required override init() {
+        super.init()
+    }
+    #endif
+
+    static var allTests: [(String, (InfallibleTest_) -> () -> Void)] { return [
+    ("testAsInfallible_OnErrorJustReturn", InfallibleTest.testAsInfallible_OnErrorJustReturn),
+    ("testAsInfallible_OnErrorFallbackTo", InfallibleTest.testAsInfallible_OnErrorFallbackTo),
+    ("testAsInfallible_OnErrorRecover", InfallibleTest.testAsInfallible_OnErrorRecover),
+    ("testAnonymousInfallible_detachesOnDispose", InfallibleTest.testAnonymousInfallible_detachesOnDispose),
+    ("testAnonymousInfallible_detachesOnComplete", InfallibleTest.testAnonymousInfallible_detachesOnComplete),
+    ("testAsInfallible_never", InfallibleTest.testAsInfallible_never),
+    ("testSubscribeWithNext", InfallibleTest.testSubscribeWithNext),
+    ("testSubscribeWithError", InfallibleTest.testSubscribeWithError),
+    ] }
+}
+
 final class MainSchedulerTest_ : MainSchedulerTest, RxTestCase {
     #if os(macOS)
     required override init() {
@@ -310,6 +358,10 @@ final class MaybeTest_ : MaybeTest, RxTestCase {
     ("testMaybe_Subscription_success", MaybeTest.testMaybe_Subscription_success),
     ("testMaybe_Subscription_completed", MaybeTest.testMaybe_Subscription_completed),
     ("testMaybe_Subscription_error", MaybeTest.testMaybe_Subscription_error),
+    ("testMaybe_Subscription_onDisposed", MaybeTest.testMaybe_Subscription_onDisposed),
+    ("testMaybe_Subscription_onDisposed_success", MaybeTest.testMaybe_Subscription_onDisposed_success),
+    ("testMaybe_Subscription_onDisposed_completed", MaybeTest.testMaybe_Subscription_onDisposed_completed),
+    ("testMaybe_Subscription_onDisposed_error", MaybeTest.testMaybe_Subscription_onDisposed_error),
     ("testMaybe_create_success", MaybeTest.testMaybe_create_success),
     ("testMaybe_create_completed", MaybeTest.testMaybe_create_completed),
     ("testMaybe_create_error", MaybeTest.testMaybe_create_error),
@@ -324,7 +376,7 @@ final class MaybeTest_ : MaybeTest, RxTestCase {
     ("test_observeOn", MaybeTest.test_observeOn),
     ("test_subscribeOn", MaybeTest.test_subscribeOn),
     ("test_catchError", MaybeTest.test_catchError),
-    ("test_catchErrorJustReturn", MaybeTest.test_catchErrorJustReturn),
+    ("test_catchAndReturn", MaybeTest.test_catchAndReturn),
     ("test_retry", MaybeTest.test_retry),
     ("test_retryWhen1", MaybeTest.test_retryWhen1),
     ("test_retryWhen2", MaybeTest.test_retryWhen2),
@@ -643,6 +695,19 @@ final class ObservableDebugTest_ : ObservableDebugTest, RxTestCase {
     ] }
 }
 
+final class ObservableDecodeTest_ : ObservableDecodeTest, RxTestCase {
+    #if os(macOS)
+    required override init() {
+        super.init()
+    }
+    #endif
+
+    static var allTests: [(String, (ObservableDecodeTest_) -> () -> Void)] { return [
+    ("testDecodeValidJSON", ObservableDecodeTest.testDecodeValidJSON),
+    ("testDecodeInvalidJSON", ObservableDecodeTest.testDecodeInvalidJSON),
+    ] }
+}
+
 final class ObservableDefaultIfEmptyTest_ : ObservableDefaultIfEmptyTest, RxTestCase {
     #if os(macOS)
     required override init() {
@@ -729,6 +794,7 @@ final class ObservableDistinctUntilChangedTest_ : ObservableDistinctUntilChanged
     ("testDistinctUntilChanged_allDifferent", ObservableDistinctUntilChangedTest.testDistinctUntilChanged_allDifferent),
     ("testDistinctUntilChanged_keySelector_Div2", ObservableDistinctUntilChangedTest.testDistinctUntilChanged_keySelector_Div2),
     ("testDistinctUntilChanged_keySelectorThrows", ObservableDistinctUntilChangedTest.testDistinctUntilChanged_keySelectorThrows),
+    ("testDistinctUntilChangedKeyPath_allChanges", ObservableDistinctUntilChangedTest.testDistinctUntilChangedKeyPath_allChanges),
     ("testDistinctUntilChanged_comparerThrows", ObservableDistinctUntilChangedTest.testDistinctUntilChanged_comparerThrows),
     ] }
 }
@@ -1164,6 +1230,11 @@ final class ObservableRelayBindTest_ : ObservableRelayBindTest, RxTestCase {
     ("testBindToOptionalBehaviorRelay", ObservableRelayBindTest.testBindToOptionalBehaviorRelay),
     ("testBindToOptionalBehaviorRelays", ObservableRelayBindTest.testBindToOptionalBehaviorRelays),
     ("testBindToBehaviorRelayNoAmbiguity", ObservableRelayBindTest.testBindToBehaviorRelayNoAmbiguity),
+    ("testBindToReplayRelay", ObservableRelayBindTest.testBindToReplayRelay),
+    ("testBindToReplayRelays", ObservableRelayBindTest.testBindToReplayRelays),
+    ("testBindToOptionalReplayRelay", ObservableRelayBindTest.testBindToOptionalReplayRelay),
+    ("testBindToOptionalReplayRelays", ObservableRelayBindTest.testBindToOptionalReplayRelays),
+    ("testBindToReplayRelayNoAmbiguity", ObservableRelayBindTest.testBindToReplayRelayNoAmbiguity),
     ] }
 }
 
@@ -1209,6 +1280,7 @@ final class ObservableSampleTest_ : ObservableSampleTest, RxTestCase {
     #endif
 
     static var allTests: [(String, (ObservableSampleTest_) -> () -> Void)] { return [
+    ("testSample_Sampler_DefaultValue", ObservableSampleTest.testSample_Sampler_DefaultValue),
     ("testSample_Sampler_SamplerThrows", ObservableSampleTest.testSample_Sampler_SamplerThrows),
     ("testSample_Sampler_Simple1", ObservableSampleTest.testSample_Sampler_Simple1),
     ("testSample_Sampler_Simple2", ObservableSampleTest.testSample_Sampler_Simple2),
@@ -1529,14 +1601,22 @@ final class ObservableTakeWhileTest_ : ObservableTakeWhileTest, RxTestCase {
     #endif
 
     static var allTests: [(String, (ObservableTakeWhileTest_) -> () -> Void)] { return [
-    ("testTakeWhile_Complete_Before", ObservableTakeWhileTest.testTakeWhile_Complete_Before),
-    ("testTakeWhile_Complete_After", ObservableTakeWhileTest.testTakeWhile_Complete_After),
-    ("testTakeWhile_Error_Before", ObservableTakeWhileTest.testTakeWhile_Error_Before),
-    ("testTakeWhile_Error_After", ObservableTakeWhileTest.testTakeWhile_Error_After),
-    ("testTakeWhile_Dispose_Before", ObservableTakeWhileTest.testTakeWhile_Dispose_Before),
-    ("testTakeWhile_Dispose_After", ObservableTakeWhileTest.testTakeWhile_Dispose_After),
-    ("testTakeWhile_Zero", ObservableTakeWhileTest.testTakeWhile_Zero),
-    ("testTakeWhile_Throw", ObservableTakeWhileTest.testTakeWhile_Throw),
+    ("testTakeWhile_Exclusive_Complete_Before", ObservableTakeWhileTest.testTakeWhile_Exclusive_Complete_Before),
+    ("testTakeWhile_Exclusive_Complete_After", ObservableTakeWhileTest.testTakeWhile_Exclusive_Complete_After),
+    ("testTakeWhile_Exclusive_Error_Before", ObservableTakeWhileTest.testTakeWhile_Exclusive_Error_Before),
+    ("testTakeWhile_Exclusive_Error_After", ObservableTakeWhileTest.testTakeWhile_Exclusive_Error_After),
+    ("testTakeWhile_Exclusive_Dispose_Before", ObservableTakeWhileTest.testTakeWhile_Exclusive_Dispose_Before),
+    ("testTakeWhile_Exclusive_Dispose_After", ObservableTakeWhileTest.testTakeWhile_Exclusive_Dispose_After),
+    ("testTakeWhile_Exclusive_Zero", ObservableTakeWhileTest.testTakeWhile_Exclusive_Zero),
+    ("testTakeWhile_Exclusive_Throw", ObservableTakeWhileTest.testTakeWhile_Exclusive_Throw),
+    ("testTakeWhile_Inclusive_Complete_Before", ObservableTakeWhileTest.testTakeWhile_Inclusive_Complete_Before),
+    ("testTakeWhile_Inclusive_Complete_After", ObservableTakeWhileTest.testTakeWhile_Inclusive_Complete_After),
+    ("testTakeWhile_Inclusive_Error_Before", ObservableTakeWhileTest.testTakeWhile_Inclusive_Error_Before),
+    ("testTakeWhile_Inclusive_Error_After", ObservableTakeWhileTest.testTakeWhile_Inclusive_Error_After),
+    ("testTakeWhile_Inclusive_Dispose_Before", ObservableTakeWhileTest.testTakeWhile_Inclusive_Dispose_Before),
+    ("testTakeWhile_Inclusive_Dispose_After", ObservableTakeWhileTest.testTakeWhile_Inclusive_Dispose_After),
+    ("testTakeWhile_Inclusive_Zero", ObservableTakeWhileTest.testTakeWhile_Inclusive_Zero),
+    ("testTakeWhile_Inclusive_Throw", ObservableTakeWhileTest.testTakeWhile_Inclusive_Throw),
     ] }
 }
 
@@ -1554,6 +1634,7 @@ final class ObservableTest_ : ObservableTest, RxTestCase {
     ("testAsObservable_asObservable", ObservableTest.testAsObservable_asObservable),
     ("testAsObservable_hides", ObservableTest.testAsObservable_hides),
     ("testAsObservable_never", ObservableTest.testAsObservable_never),
+    ("testSubscribeWithNext", ObservableTest.testSubscribeWithNext),
     ] }
 }
 
@@ -1816,6 +1897,9 @@ final class ReactiveTests_ : ReactiveTests, RxTestCase {
 
     static var allTests: [(String, (ReactiveTests_) -> () -> Void)] { return [
     ("testEnablesMutations", ReactiveTests.testEnablesMutations),
+    ("testReactiveStruct", ReactiveTests.testReactiveStruct),
+    ("testReactiveProtocol", ReactiveTests.testReactiveProtocol),
+    ("testDynamicLookup", ReactiveTests.testDynamicLookup),
     ] }
 }
 
@@ -1832,6 +1916,21 @@ final class RecursiveLockTests_ : RecursiveLockTests, RxTestCase {
     ] }
 }
 
+final class ReplayRelayTests_ : ReplayRelayTests, RxTestCase {
+    #if os(macOS)
+    required override init() {
+        super.init()
+    }
+    #endif
+
+    static var allTests: [(String, (ReplayRelayTests_) -> () -> Void)] { return [
+    ("test_noEvents", ReplayRelayTests.test_noEvents),
+    ("test_fewerEventsThanBufferSize", ReplayRelayTests.test_fewerEventsThanBufferSize),
+    ("test_moreEventsThanBufferSize", ReplayRelayTests.test_moreEventsThanBufferSize),
+    ("test_moreEventsThanBufferSizeMultipleObservers", ReplayRelayTests.test_moreEventsThanBufferSizeMultipleObservers),
+    ] }
+}
+
 final class ReplaySubjectTest_ : ReplaySubjectTest, RxTestCase {
     #if os(macOS)
     required override init() {
@@ -1843,6 +1942,14 @@ final class ReplaySubjectTest_ : ReplaySubjectTest, RxTestCase {
     ("test_hasObserversNoObservers", ReplaySubjectTest.test_hasObserversNoObservers),
     ("test_hasObserversOneObserver", ReplaySubjectTest.test_hasObserversOneObserver),
     ("test_hasObserversManyObserver", ReplaySubjectTest.test_hasObserversManyObserver),
+    ("test_noEvents", ReplaySubjectTest.test_noEvents),
+    ("test_fewerEventsThanBufferSize", ReplaySubjectTest.test_fewerEventsThanBufferSize),
+    ("test_moreEventsThanBufferSize", ReplaySubjectTest.test_moreEventsThanBufferSize),
+    ("test_moreEventsThanBufferSizeMultipleObservers", ReplaySubjectTest.test_moreEventsThanBufferSizeMultipleObservers),
+    ("test_subscribingBeforeComplete", ReplaySubjectTest.test_subscribingBeforeComplete),
+    ("test_subscribingAfterComplete", ReplaySubjectTest.test_subscribingAfterComplete),
+    ("test_subscribingBeforeError", ReplaySubjectTest.test_subscribingBeforeError),
+    ("test_subscribingAfterError", ReplaySubjectTest.test_subscribingAfterError),
     ] }
 }
 
@@ -1909,6 +2016,7 @@ final class SharingSchedulerTest_ : SharingSchedulerTest, RxTestCase {
     static var allTests: [(String, (SharingSchedulerTest_) -> () -> Void)] { return [
     ("testSharingSchedulerMockMake", SharingSchedulerTest.testSharingSchedulerMockMake),
     ("testSharingSchedulerMockInstance", SharingSchedulerTest.testSharingSchedulerMockInstance),
+    ("testSharingSchedulerMockThrows", SharingSchedulerTest.testSharingSchedulerMockThrows),
     ] }
 }
 
@@ -1928,16 +2036,34 @@ final class SignalTests_ : SignalTests, RxTestCase {
     ("testAsSignal_onErrorDriveWith", SignalTests.testAsSignal_onErrorDriveWith),
     ("testAsSignal_onErrorRecover", SignalTests.testAsSignal_onErrorRecover),
     ("testEmitObserver", SignalTests.testEmitObserver),
+    ("testEmitObservers", SignalTests.testEmitObservers),
     ("testEmitOptionalObserver", SignalTests.testEmitOptionalObserver),
+    ("testEmitOptionalObservers", SignalTests.testEmitOptionalObservers),
     ("testEmitNoAmbiguity", SignalTests.testEmitNoAmbiguity),
     ("testEmitBehaviorRelay", SignalTests.testEmitBehaviorRelay),
+    ("testEmitBehaviorRelays", SignalTests.testEmitBehaviorRelays),
     ("testEmitBehaviorRelay1", SignalTests.testEmitBehaviorRelay1),
+    ("testEmitBehaviorRelays1", SignalTests.testEmitBehaviorRelays1),
     ("testEmitBehaviorRelay2", SignalTests.testEmitBehaviorRelay2),
-    ("testEmitBehaviorRelay3", SignalTests.testEmitBehaviorRelay3),
-    ("testSignalRelay", SignalTests.testSignalRelay),
-    ("testSignalOptionalRelay1", SignalTests.testSignalOptionalRelay1),
-    ("testSignalOptionalRelay2", SignalTests.testSignalOptionalRelay2),
-    ("testDriveRelayNoAmbiguity", SignalTests.testDriveRelayNoAmbiguity),
+    ("testEmitBehaviorRelays2", SignalTests.testEmitBehaviorRelays2),
+    ("testEmitBehaviorRelayNoAmbiguity", SignalTests.testEmitBehaviorRelayNoAmbiguity),
+    ("testEmitPublishRelay", SignalTests.testEmitPublishRelay),
+    ("testEmitPublishRelays", SignalTests.testEmitPublishRelays),
+    ("testEmitOptionalPublishRelay1", SignalTests.testEmitOptionalPublishRelay1),
+    ("testEmitOptionalPublishRelays", SignalTests.testEmitOptionalPublishRelays),
+    ("testEmitOptionalPublishRelay2", SignalTests.testEmitOptionalPublishRelay2),
+    ("testEmitPublishRelays2", SignalTests.testEmitPublishRelays2),
+    ("testEmitPublishRelayNoAmbiguity", SignalTests.testEmitPublishRelayNoAmbiguity),
+    ("testEmitReplayRelay", SignalTests.testEmitReplayRelay),
+    ("testEmitReplayRelays", SignalTests.testEmitReplayRelays),
+    ("testEmitOptionalReplayRelay1", SignalTests.testEmitOptionalReplayRelay1),
+    ("testEmitOptionalReplayRelays", SignalTests.testEmitOptionalReplayRelays),
+    ("testEmitOptionalReplayRelay2", SignalTests.testEmitOptionalReplayRelay2),
+    ("testEmitReplayRelays2", SignalTests.testEmitReplayRelays2),
+    ("testEmitReplayRelayNoAmbiguity", SignalTests.testEmitReplayRelayNoAmbiguity),
+    ("testEmitWithNext", SignalTests.testEmitWithNext),
+    ("testEmitWithError", SignalTests.testEmitWithError),
+    ("testEmitWithCompleted", SignalTests.testEmitWithCompleted),
     ] }
 }
 
@@ -1965,6 +2091,9 @@ final class SingleTest_ : SingleTest, RxTestCase {
     ("testZip8_tuple", SingleTest.testZip8_tuple),
     ("testSingle_Subscription_success", SingleTest.testSingle_Subscription_success),
     ("testSingle_Subscription_error", SingleTest.testSingle_Subscription_error),
+    ("testSingle_Subscription_onDisposed", SingleTest.testSingle_Subscription_onDisposed),
+    ("testSingle_Subscription_onDisposed_success", SingleTest.testSingle_Subscription_onDisposed_success),
+    ("testSingle_Subscription_onDisposed_error", SingleTest.testSingle_Subscription_onDisposed_error),
     ("testSingle_create_success", SingleTest.testSingle_create_success),
     ("testSingle_create_error", SingleTest.testSingle_create_error),
     ("testSingle_create_disposing", SingleTest.testSingle_create_disposing),
@@ -1978,7 +2107,7 @@ final class SingleTest_ : SingleTest, RxTestCase {
     ("test_observeOn", SingleTest.test_observeOn),
     ("test_subscribeOn", SingleTest.test_subscribeOn),
     ("test_catchError", SingleTest.test_catchError),
-    ("test_catchErrorJustReturn", SingleTest.test_catchErrorJustReturn),
+    ("test_catchAndReturn", SingleTest.test_catchAndReturn),
     ("test_retry", SingleTest.test_retry),
     ("test_retryWhen1", SingleTest.test_retryWhen1),
     ("test_retryWhen2", SingleTest.test_retryWhen2),
@@ -2029,6 +2158,21 @@ final class VirtualSchedulerTest_ : VirtualSchedulerTest, RxTestCase {
     ("testVirtualScheduler_stress", VirtualSchedulerTest.testVirtualScheduler_stress),
     ] }
 }
+
+final class WithUnretainedTests_ : WithUnretainedTests, RxTestCase {
+    #if os(macOS)
+    required override init() {
+        super.init()
+    }
+    #endif
+
+    static var allTests: [(String, (WithUnretainedTests_) -> () -> Void)] { return [
+    ("testObjectAttached", WithUnretainedTests.testObjectAttached),
+    ("testObjectDeallocates", WithUnretainedTests.testObjectDeallocates),
+    ("testObjectDeallocatesSequenceCompletes", WithUnretainedTests.testObjectDeallocatesSequenceCompletes),
+    ("testResultsSelector", WithUnretainedTests.testResultsSelector),
+    ] }
+}
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 
 func testCase<T: RxTestCase>(_ tests: [(String, (T) -> () -> Void)]) -> () -> Void {
@@ -2059,6 +2203,7 @@ func XCTMain(_ tests: [() -> Void]) {
         testCase(AsyncSubjectTests_.allTests),
         testCase(AtomicTests_.allTests),
         testCase(BehaviorSubjectTest_.allTests),
+        testCase(BinderTests_.allTests),
         testCase(CompletableAndThenTest_.allTests),
         testCase(CompletableTest_.allTests),
         testCase(ConcurrentDispatchQueueSchedulerTests_.allTests),
@@ -2068,6 +2213,7 @@ func XCTMain(_ tests: [() -> Void]) {
         testCase(DriverTest_.allTests),
         testCase(EventTests_.allTests),
         testCase(HistoricalSchedulerTest_.allTests),
+        testCase(InfallibleTest_.allTests),
         testCase(MainSchedulerTest_.allTests),
         testCase(MaybeTest_.allTests),
         testCase(NSNotificationCenterTests_.allTests),
@@ -2079,6 +2225,7 @@ func XCTMain(_ tests: [() -> Void]) {
         testCase(ObservableCompactMapTest_.allTests),
         testCase(ObservableConcatTest_.allTests),
         testCase(ObservableDebugTest_.allTests),
+        testCase(ObservableDecodeTest_.allTests),
         testCase(ObservableDefaultIfEmptyTest_.allTests),
         testCase(ObservableDelaySubscriptionTest_.allTests),
         testCase(ObservableDelayTest_.allTests),
@@ -2135,11 +2282,13 @@ func XCTMain(_ tests: [() -> Void]) {
         testCase(PublishSubjectTest_.allTests),
         testCase(ReactiveTests_.allTests),
         testCase(RecursiveLockTests_.allTests),
+        testCase(ReplayRelayTests_.allTests),
         testCase(ReplaySubjectTest_.allTests),
         testCase(SharedSequenceOperatorTests_.allTests),
         testCase(SharingSchedulerTest_.allTests),
         testCase(SignalTests_.allTests),
         testCase(SingleTest_.allTests),
         testCase(VirtualSchedulerTest_.allTests),
+        testCase(WithUnretainedTests_.allTests),
     ])
 //}

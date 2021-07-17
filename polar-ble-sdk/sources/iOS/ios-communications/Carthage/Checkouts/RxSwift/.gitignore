@@ -18,6 +18,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 *.o
+.swiftpm/
+docs/docsets
+*.xcframework
 
 timeline.xctimeline
 .vscode
@@ -52,6 +55,7 @@ Carthage/Build
 
 .build/
 Packages/
+.swiftpm
 
 # AppCode
 

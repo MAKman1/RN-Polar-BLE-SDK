@@ -2,27 +2,20 @@
 custom_categories:
 - name: RxCocoa/Common
   children:
-  - Binder
   - ControlTarget
   - DelegateProxy
   - DelegateProxyType
-  - KeyPathBinder
-  - NSLayoutConstraint+Rx
+  - Infallible+Bind
   - Observable+Bind
   - RxCocoaObjCRuntimeError+Extensions
   - RxTarget
   - SectionedViewDataSourceType
   - TextInput
-- name: RxCocoa
-  children:
-  - Deprecated
-  - RxCocoa
 - name: RxCocoa/Foundation
   children:
   - KVORepresentable+CoreGraphics
   - KVORepresentable+Swift
   - KVORepresentable
-  - Logging
   - NSObject+Rx+KVORepresentable
   - NSObject+Rx+RawRepresentable
   - NSObject+Rx
@@ -31,6 +24,9 @@ custom_categories:
 - name: RxCocoa/Platform
   children:
   - DispatchQueue+Extensions
+- name: RxCocoa
+  children:
+  - RxCocoa
 - name: RxCocoa/Traits
   children:
   - ControlEvent
@@ -69,7 +65,6 @@ custom_categories:
   children:
   - NSTextStorage+Rx
   - UIActivityIndicatorView+Rx
-  - UIAlertAction+Rx
   - UIApplication+Rx
   - UIBarButtonItem+Rx
   - UIButton+Rx
@@ -77,13 +72,8 @@ custom_categories:
   - UIControl+Rx
   - UIDatePicker+Rx
   - UIGestureRecognizer+Rx
-  - UIImageView+Rx
-  - UILabel+Rx
   - UINavigationController+Rx
-  - UINavigationItem+Rx
-  - UIPageControl+Rx
   - UIPickerView+Rx
-  - UIProgressView+Rx
   - UIRefreshControl+Rx
   - UIScrollView+Rx
   - UISearchBar+Rx
@@ -94,12 +84,9 @@ custom_categories:
   - UISwitch+Rx
   - UITabBar+Rx
   - UITabBarController+Rx
-  - UITabBarItem+Rx
   - UITableView+Rx
   - UITextField+Rx
   - UITextView+Rx
-  - UIView+Rx
-  - UIViewController+Rx
   - WKWebView+Rx
 - name: RxCocoa/iOS/Protocols
   children:
@@ -129,7 +116,6 @@ custom_categories:
   children:
   - NSButton+Rx
   - NSControl+Rx
-  - NSImageView+Rx
   - NSSlider+Rx
   - NSTextField+Rx
   - NSTextView+Rx
@@ -139,14 +125,15 @@ custom_categories:
   - BehaviorRelay
   - Observable+Bind
   - PublishRelay
+  - ReplayRelay
   - Utils
 - name: RxSwift
   children:
   - AnyObserver
+  - Binder
   - Cancelable
   - ConnectableObservableType
   - Date+Dispatch
-  - Deprecated
   - Disposable
   - Errors
   - Event
@@ -203,6 +190,7 @@ custom_categories:
   - Create
   - Debounce
   - Debug
+  - Decode
   - DefaultIfEmpty
   - Deferred
   - Delay
@@ -246,8 +234,7 @@ custom_categories:
   - SwitchIfEmpty
   - Take
   - TakeLast
-  - TakeUntil
-  - TakeWhile
+  - TakeWithPredicate
   - Throttle
   - Timeout
   - Timer
@@ -255,6 +242,7 @@ custom_categories:
   - Using
   - Window
   - WithLatestFrom
+  - WithUnretained
   - Zip+Collection
   - Zip+arity
   - Zip
@@ -307,7 +295,15 @@ custom_categories:
 - name: RxSwift/SwiftSupport
   children:
   - SwiftSupport
-- name: RxSwift/Traits
+- name: RxSwift/Traits/Infallible
+  children:
+  - Infallible+CombineLatest+arity
+  - Infallible+Create
+  - Infallible+Operators
+  - Infallible+Zip+arity
+  - Infallible
+  - ObservableConvertibleType+Infallible
+- name: RxSwift/Traits/PrimitiveSequence
   children:
   - Completable+AndThen
   - Completable

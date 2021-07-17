@@ -4,6 +4,7 @@ Getting Started
 This project tries to be consistent with [ReactiveX.io](http://reactivex.io/). The general cross platform documentation and tutorials should also be valid in case of `RxSwift`.
 
 1. [Observables aka Sequences](#observables-aka-sequences)
+1. [Infallible](#infallible)
 1. [Disposing](#disposing)
 1. [Implicit `Observable` guarantees](#implicit-observable-guarantees)
 1. [Creating your first `Observable` (aka observable sequence)](#creating-your-own-observable-aka-observable-sequence)
@@ -443,18 +444,27 @@ let subscription1 = counter
     .subscribe(onNext: { n in
         print("First \(n)")
     })
+    
+print("Subscribed")
+
 let subscription2 = counter
     .subscribe(onNext: { n in
         print("Second \(n)")
     })
+    
+print("Subscribed")
 
 Thread.sleep(forTimeInterval: 0.5)
 
 subscription1.dispose()
 
+print("Disposed")
+
 Thread.sleep(forTimeInterval: 0.5)
 
 subscription2.dispose()
+
+print("Disposed")
 
 print("Ended ----")
 ```
@@ -539,7 +549,6 @@ First 3
 Second 3
 First 4
 Second 4
-First 5
 Second 5
 Second 6
 Second 7
@@ -658,6 +667,12 @@ This is simply 7
 This is simply 8
 ...
 ```
+
+## Infallible
+
+`Infallible` is another flavor of `Observable` which is identical to it, but is guaranteed to never fail and thus cannot emit errors. This means that when creating your own `Infallible` (Using `Infallible.create` or one of the methods mentioned in [Creating your first `Observable`](#creating-your-own-observable-aka-observable-sequence)), you will not be allowed to emit errors.
+
+`Infallible` is useful when you want to statically model and guarantee a stream of values that is known to never fail, but don't want to commit to using `MainScheduler` and don't want to implicitly use `share()` to share resources and side-effects, such as the case in [`Driver` and `Signal`](Traits.md#rxcocoa-traits).
 
 ### Life happens
 
@@ -1081,20 +1096,12 @@ URLSession.shared.rx.response(myURLRequest)
 ```
 ### Logging HTTP traffic
 
-In debug mode RxCocoa will log all HTTP request to console by default. In case you want to change that behavior, please set `Logging.URLRequests` filter.
+RxCocoa will log all HTTP request info to the console by default when run in debug mode. You may overwrite the `URLSession.rx.shouldLogRequest` closure to define which requests should and shouldn't be logged.
 
 ```swift
-// read your own configuration
-public struct Logging {
-    public typealias LogURLRequest = (URLRequest) -> Bool
-
-    public static var URLRequests: LogURLRequest =  { _ in
-    #if DEBUG
-        return true
-    #else
-        return false
-    #endif
-    }
+URLSession.rx.shouldLogRequest = { request in
+    // Only log requests to reactivex.org     
+    return request.url?.host == "reactivex.org" || request.url?.host == "www.reactivex.org"
 }
 ```
 

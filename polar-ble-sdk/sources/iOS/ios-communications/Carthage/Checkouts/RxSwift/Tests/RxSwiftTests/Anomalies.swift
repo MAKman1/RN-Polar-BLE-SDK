@@ -12,7 +12,7 @@ import RxTest
 import XCTest
 import Dispatch
 
-import class Foundation.Thread
+import Foundation
 
 /**
  Makes sure github anomalies and edge cases don't surface up again.
@@ -28,7 +28,7 @@ extension AnomaliesTest {
                 attributes: .concurrent // commenting this to use a serial queue remove the issue
             )
 
-            for i in 0 ..< 10 {
+            for _ in 0 ..< 10 {
                 let expectation = self.expectation(description: "wait until sequence completes")
 
                 queue.async {
@@ -124,7 +124,7 @@ extension AnomaliesTest {
 
     func testSeparationBetweenOnAndSubscriptionLocks() {
         func performSharingOperatorsTest(share: @escaping (Observable<Int>) -> Observable<Int>) {
-            for i in 0 ..< 1 {
+            for _ in 0 ..< 1 {
                 let expectation = self.expectation(description: "wait until sequence completes")
 
                 let queue = DispatchQueue(

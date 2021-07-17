@@ -1,15 +1,20 @@
 #!/bin/sh
+echo "Test 1"
 set -e
+echo "Test 2"
 WORKSPACE=${WORKSPACE:=`pwd`}
 DERIVED_DATA=${DERIVED_DATA:=`mktemp -qd $WORKSPACE/DerivedData.XXXXX`}
 echo "WORKSPACE:          $WORKSPACE"
 echo "DERIVED_DATA:       $DERIVED_DATA"
+echo "Test 3"
 function cleanup {
   echo "Cleaning up..."
   rm -fr $DERIVED_DATA
 }
+echo "Test 4"
 trap cleanup EXIT
 cd $WORKSPACE
+echo "Test 5"
 echo "Rebuilding projects..."; sleep 1
 xcodebuild -scheme PolarBleSdk -configuration Release -sdk `xcrun --sdk iphoneos --show-sdk-path` -derivedDataPath $DERIVED_DATA ONLY_ACTIVE_ARCH=NO ARCHS="armv7 arm64" "OTHER_SWIFT_FLAGS=-DDISABLE_TEAM_PRO_DECRYPTION" CODE_SIGN_IDENTITY='' "OTHER_CFLAGS=-fembed-bitcode"
 xcodebuild -scheme PolarBleSdk -configuration Release -sdk `xcrun --sdk iphonesimulator --show-sdk-path` -derivedDataPath $DERIVED_DATA ONLY_ACTIVE_ARCH=NO ARCHS="i386 x86_64" "OTHER_SWIFT_FLAGS=-DDISABLE_TEAM_PRO_DECRYPTION" CODE_SIGN_IDENTITY='' "OTHER_CFLAGS=-fembed-bitcode"

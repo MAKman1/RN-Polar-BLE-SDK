@@ -22,26 +22,31 @@ BOLDWHITE="\033[1m\033[37m"
 # make sure all tests are passing
 
 if [[ `uname` == "Darwin" ]]; then
-    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.iOS-12-3 | wc -l` -eq 1 ]; then
-        DEFAULT_IOS_SIMULATOR=RxSwiftTest/iPhone-6/iOS/12.3
-    elif [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.iOS-12-2 | wc -l` -eq 1 ]; then
-        DEFAULT_IOS_SIMULATOR=RxSwiftTest/iPhone-6/iOS/12.2
+    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.iOS-14- | wc -l` -ge 1 ]; then
+        DEFAULT_IOS_SIMULATOR=RxSwiftTest/iPhone-11/iOS/14.4
     else
-    	DEFAULT_IOS_SIMULATOR=RxSwiftTest/iPhone-6/iOS/12.2
+		echo "No iOS 14.* Simulator found, available runtimes are:"
+		xcrun simctl list runtimes
+    	exit -1
     fi
 
-    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.watchOS-5-2 | wc -l` -eq 1 ]; then
-        DEFAULT_WATCHOS_SIMULATOR=RxSwiftTest/Apple-Watch-Series-4-44mm/watchOS/5.2
+    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.watchOS-7- | wc -l` -ge 1 ]; then
+        DEFAULT_WATCHOS_SIMULATOR=RxSwiftTest/Apple-Watch-Series-5-44mm/watchOS/7.2
     else
-    	DEFAULT_WATCHOS_SIMULATOR=RxSwiftTest/Apple-Watch-38mm/watchOS/5.2
+		echo "No watchOS 7.* Simulator found, available runtimes are:"
+		xcrun simctl list runtimes
+    	exit -1
     fi
 
-    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.tvOS-12-2 | wc -l` -eq 1 ]; then
-        DEFAULT_TVOS_SIMULATOR=RxSwiftTest/Apple-TV-1080p/tvOS/12.2
+    if [ `xcrun simctl list runtimes | grep com.apple.CoreSimulator.SimRuntime.tvOS-14- | wc -l` -ge 1 ]; then
+        DEFAULT_TVOS_SIMULATOR=RxSwiftTest/Apple-TV-1080p/tvOS/14.3
     else
-    	DEFAULT_TVOS_SIMULATOR=RxSwiftTest/Apple-TV-1080p/tvOS/12.2
+		echo "No tvOS 14.* Simulator found, available runtimes are:"
+		xcrun simctl list runtimes
+    	exit -1
     fi
 fi
+
 RUN_SIMULATOR_BY_NAME=0
 
 function runtime_available() {

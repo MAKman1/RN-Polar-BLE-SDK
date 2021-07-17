@@ -2,7 +2,7 @@ BCSymbolMap Version: 2.0
 Apple clang version 12.0.5 (clang-1205.0.22.11)
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk
 iPhoneOS14.5.sdk
-/Users/mak/Library/Caches/org.carthage.CarthageKit/DerivedData/12.5.1_12E507/RxSwift/5.1.1/Build/Intermediates.noindex/ArchiveIntermediates/RxCocoa/IntermediateBuildFilesPath/Rx.build/Release-iphoneos/RxCocoa.build/DerivedSources/RxCocoa_vers.c
+/var/root/Library/Caches/org.carthage.CarthageKit/DerivedData/12.5.1_12E507/RxSwift/5.1.1/Build/Intermediates.noindex/ArchiveIntermediates/RxCocoa/IntermediateBuildFilesPath/Rx.build/Release-iphoneos/RxCocoa.build/DerivedSources/RxCocoa_vers.c
 /Users/mak/Data/PROJECTS/ReactProjects/react-native-polar-ble-sdk-master/polar-ble-sdk/sources/iOS/ios-communications/Carthage/Checkouts/RxSwift
 /Users/mak/Data/PROJECTS/ReactProjects/react-native-polar-ble-sdk-master/polar-ble-sdk/sources/iOS/ios-communications/Carthage/Checkouts/RxSwift/RxCocoa/Runtime/_RX.m
 -[_RXKVOObserver initWithTarget:retainTarget:keyPath:options:callback:]

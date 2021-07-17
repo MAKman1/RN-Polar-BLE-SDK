@@ -1,30 +1,35 @@
 {
-  "commitish" : "5.1.1",
+  "commitish" : "6.2.0",
   "iOS" : [
     {
+      "hash" : "a3c15dac279e2b59de74134ea04d09a43550240d352148955045117013632af7",
       "name" : "RxBlocking",
-      "hash" : "de8e3ae6e797a8b6d9e498057c2046fa63ce54fdccfe1dc96766fea0ef993fce",
-      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
     },
     {
-      "name" : "RxTest",
-      "hash" : "7c98ae0d721bc8fc632c0f4cc824a4d7212a628301dea9cdb6c1e45fd9765afe",
-      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
-    },
-    {
-      "name" : "RxRelay",
-      "hash" : "f43d312fd8a8c3621d076ab74f768dc35fc797c434db7d388b74fe017fd93374",
-      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
-    },
-    {
+      "hash" : "5d9727ef90bbbfa11814d73920f6ee05772ebca523136b7abd480ac34b56f291",
       "name" : "RxCocoa",
-      "hash" : "640e12c03ef15509b9f18f98ef542cd9dc6e368347b5544c5bdd93f27b05bdbb",
-      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
     },
     {
+      "hash" : "106c167af5959fd7ef0a0ab25b37828c5cc0c25b52161ed75890b49fded5e2b3",
+      "name" : "RxRelay",
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
+    },
+    {
+      "hash" : "281884ccf3f442468d950c4500f54df47ad98d2282977cd631484dd8800769e1",
       "name" : "RxSwift",
-      "hash" : "b0241a3a0f3b2b4895b8cb8fe66f9c396ddcf59b21d86386122d5fa39a3d81e5",
-      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
+    },
+    {
+      "hash" : "e2022673070cf34a01f115a301b5c865b7e113b734de8fdc7a0bed08ac3dd855",
+      "name" : "RxTest",
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
     }
   ]
 }

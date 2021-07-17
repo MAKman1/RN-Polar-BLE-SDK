@@ -1,23 +1,10 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)
-// swift-module-flags: -target arm64-apple-ios8.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RxTest
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RxTest
 import Foundation
-import Foundation/*.NSError*/
 import RxSwift
 import Swift
 import XCTest
-extension TestScheduler {
-  @available(*, deprecated, renamed: "start(disposed:create:)")
-  public func start<Element>(_ disposed: RxTest.TestTime, create: @escaping () -> RxSwift.Observable<Element>) -> RxTest.TestableObserver<Element>
-  @available(*, deprecated, renamed: "start(created:subscribed:disposed:create:)")
-  public func start<Element>(_ created: RxTest.TestTime, subscribed: RxTest.TestTime, disposed: RxTest.TestTime, create: @escaping () -> RxSwift.Observable<Element>) -> RxTest.TestableObserver<Element>
-}
-@available(*, deprecated, renamed: "Recorded.next(_:_:)")
-public func next<T>(_ time: RxTest.TestTime, _ element: T) -> RxTest.Recorded<RxSwift.Event<T>>
-@available(*, deprecated, renamed: "Recorded.completed(_:_:)")
-public func completed<T>(_ time: RxTest.TestTime, _ type: T.Type = T.self) -> RxTest.Recorded<RxSwift.Event<T>>
-@available(*, deprecated, renamed: "Recorded.error(_:_:_:)")
-public func error<T>(_ time: RxTest.TestTime, _ error: Swift.Error, _ type: T.Type = T.self) -> RxTest.Recorded<RxSwift.Event<T>>
 public struct Recorded<Value> : Swift.CustomDebugStringConvertible {
   public let time: RxTest.TestTime
   public let value: Value
@@ -52,9 +39,6 @@ extension CompletableEvent : Swift.Equatable {
 extension Event : Swift.Equatable where Element : Swift.Equatable {
   public static func == (lhs: RxSwift.Event<Element>, rhs: RxSwift.Event<Element>) -> Swift.Bool
 }
-extension SingleEvent : Swift.Equatable where Element : Swift.Equatable {
-  public static func == (lhs: RxSwift.SingleEvent<Element>, rhs: RxSwift.SingleEvent<Element>) -> Swift.Bool
-}
 extension MaybeEvent : Swift.Equatable where Element : Swift.Equatable {
   public static func == (lhs: RxSwift.MaybeEvent<Element>, rhs: RxSwift.MaybeEvent<Element>) -> Swift.Bool
 }
@@ -80,11 +64,11 @@ public class TestScheduler : RxSwift.VirtualTimeScheduler<RxTest.TestSchedulerVi
   public func createObserver<Element>(_ type: Element.Type) -> RxTest.TestableObserver<Element>
   public func scheduleAt(_ time: RxTest.TestTime, action: @escaping () -> Swift.Void)
   override public func adjustScheduledTime(_ time: RxTest.TestScheduler.VirtualTime) -> RxTest.TestScheduler.VirtualTime
-  public func start<Element>(created: RxTest.TestTime, subscribed: RxTest.TestTime, disposed: RxTest.TestTime, create: @escaping () -> RxSwift.Observable<Element>) -> RxTest.TestableObserver<Element>
-  public func start<Element>(disposed: RxTest.TestTime, create: @escaping () -> RxSwift.Observable<Element>) -> RxTest.TestableObserver<Element>
-  public func start<Element>(_ create: @escaping () -> RxSwift.Observable<Element>) -> RxTest.TestableObserver<Element>
-  @objc deinit
+  public func start<Element, OutputSequence>(created: RxTest.TestTime, subscribed: RxTest.TestTime, disposed: RxTest.TestTime, create: @escaping () -> OutputSequence) -> RxTest.TestableObserver<Element> where Element == OutputSequence.Element, OutputSequence : RxSwift.ObservableConvertibleType
+  public func start<Element, OutputSequence>(disposed: RxTest.TestTime, create: @escaping () -> OutputSequence) -> RxTest.TestableObserver<Element> where Element == OutputSequence.Element, OutputSequence : RxSwift.ObservableConvertibleType
+  public func start<Element, OutputSequence>(_ create: @escaping () -> OutputSequence) -> RxTest.TestableObserver<Element> where Element == OutputSequence.Element, OutputSequence : RxSwift.ObservableConvertibleType
   override public init(initialClock: RxSwift.VirtualTimeScheduler<RxTest.TestSchedulerVirtualTimeConverter>.VirtualTime, converter: RxTest.TestSchedulerVirtualTimeConverter)
+  @objc deinit
 }
 extension Recorded {
   public static func next<T>(_ time: RxTest.TestTime, _ element: T) -> RxTest.Recorded<RxSwift.Event<T>> where Value == RxSwift.Event<T>

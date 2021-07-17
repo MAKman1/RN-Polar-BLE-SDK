@@ -25,11 +25,17 @@ cd $(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 # get custom carthage script (needs carthage installed)
 source ./carthage.sh
 
+echo "building now..... 1"
+
 # then go to PolarBleSdk source folder
 cd ../../polar-ble-sdk/sources/iOS/ios-communications
 
+echo "building now..... 2"
+
 # now call the modified carthage script to rebuild RxSwift
-cart update RxSwift --no-use-binaries --platform iOS
+cart update RxSwift --platform iOS --new-resolver --cache-builds --no-use-binaries
+
+echo "building now..... 3"
 
 # then build the PolarBleSdk framework
 source ./build_sdk.sh

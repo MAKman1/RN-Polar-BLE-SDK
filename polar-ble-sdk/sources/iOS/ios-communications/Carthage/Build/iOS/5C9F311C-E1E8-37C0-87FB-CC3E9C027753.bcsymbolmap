@@ -2,7 +2,7 @@ BCSymbolMap Version: 2.0
 Apple clang version 12.0.5 (clang-1205.0.22.11)
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk
 iPhoneOS14.5.sdk
-/Users/mak/Library/Caches/org.carthage.CarthageKit/DerivedData/12.5.1_12E507/RxSwift/5.1.1/Build/Intermediates.noindex/ArchiveIntermediates/RxSwift/IntermediateBuildFilesPath/Rx.build/Release-iphoneos/RxSwift.build/DerivedSources/RxSwift_vers.c
+/var/root/Library/Caches/org.carthage.CarthageKit/DerivedData/12.5.1_12E507/RxSwift/5.1.1/Build/Intermediates.noindex/ArchiveIntermediates/RxSwift/IntermediateBuildFilesPath/Rx.build/Release-iphoneos/RxSwift.build/DerivedSources/RxSwift_vers.c
 /Users/mak/Data/PROJECTS/ReactProjects/react-native-polar-ble-sdk-master/polar-ble-sdk/sources/iOS/ios-communications/Carthage/Checkouts/RxSwift
 _$s7RxSwift13SwitchIfEmpty33_4EF23CB91518B220F70F6EFE04E59884LLCMa
 _$s7RxSwift13SwitchIfEmpty33_4EF23CB91518B220F70F6EFE04E59884LLC6source02ifE0ADyxGAA10ObservableCyxG_AJtcfC
