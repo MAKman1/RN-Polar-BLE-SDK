@@ -38,13 +38,17 @@ cart update RxSwift --platform iOS --new-resolver --cache-builds --no-use-binari
 echo "building now..... 3"
 
 # then build the PolarBleSdk framework
-source ./build_sdk.sh
+
+source ./scripts/build_sdk.sh
+
+echo "building now..... 4"
 
 # for some reason the build_sdk.h script ends up cd'ing into 3rd_party_sdk
 # so we come back where we were before
-cd ..
+
+# cd ..
 
 # and finally copy the two new frameworks into the ios sdk folder,
 # replacing the original ones :
 cp -r ./Carthage/Build/iOS/RxSwift.framework ../../../polar-sdk-ios
-cp -r ./3rd_party_sdk/PolarBleSdk.framework ../../../polar-sdk-ios
+cp -r ./polar-sdk-ios/PolarBleSdk.xcframework ../../../polar-sdk-ios

@@ -4,7 +4,7 @@ import Foundation
 import CoreBluetooth
 
 /// Polar Ble API connection observer.
-public protocol PolarBleApiObserver: class {
+public protocol PolarBleApiObserver: AnyObject {
     
     /// Callback when connection attempt is started to device
     ///
@@ -24,7 +24,7 @@ public protocol PolarBleApiObserver: class {
 }
 
 /// Bluetooth state observer.
-public protocol PolarBleApiPowerStateObserver: class {
+public protocol PolarBleApiPowerStateObserver: AnyObject {
     /// Ble powered on event.
     func blePowerOn()
     
@@ -33,7 +33,7 @@ public protocol PolarBleApiPowerStateObserver: class {
 }
 
 /// Device info observer.
-public protocol PolarBleApiDeviceInfoObserver: class {
+public protocol PolarBleApiDeviceInfoObserver: AnyObject {
     /// Battery level received from device.
     ///
     /// - Parameters:
@@ -50,7 +50,7 @@ public protocol PolarBleApiDeviceInfoObserver: class {
 }
 
 /// Heart rate observer
-public protocol PolarBleApiDeviceHrObserver: class {
+public protocol PolarBleApiDeviceHrObserver: AnyObject {
     /// Polar hr data
     ///
     ///     - hr in BPM
@@ -67,52 +67,31 @@ public protocol PolarBleApiDeviceHrObserver: class {
 }
 
 /// Data client observer
-public protocol PolarBleApiDeviceFeaturesObserver: class {
+public protocol PolarBleApiDeviceFeaturesObserver: AnyObject {
     
     /// Device HR feature is ready. HR transmission is starting in a short while.
     ///
     /// - Parameter identifier: Polar device id
     func hrFeatureReady(_ identifier: String)
-
-    /// Device ECG feature is ready. Application can now start ECG streaming.
-    ///
-    /// - Parameters:
-    ///   - identifier: Polar device id
-    func ecgFeatureReady(_ identifier: String)
-
-    /// Device ACC feature is ready. Application can now start ACC streaming.
-    ///
-    /// - Parameters:
-    ///   - identifier: Polar device id
-    func accFeatureReady(_ identifier: String)
-
-    /// Device OHR PPG feature is ready.
-    ///
-    /// - Parameter identifier: polar device id
-    func ohrPPGFeatureReady(_ identifier: String)
-
-    /// Device OHR PPG feature is ready.
-    ///
-    /// - Parameter identifier: polar device id
-    func ohrPPIFeatureReady(_ identifier: String)
-
-    func biozFeatureReady(_ identifier: String)
-
+    
     /// Device file transfer protocol is ready.
     /// Notice all file transfer operations are preferred to be done at beginning of the connection
     ///
     /// - Parameter identifier: polar device id
     func ftpFeatureReady(_ identifier: String)
+    
+    /// feature ready callback
+    func streamingFeaturesReady(_ identifier: String, streamingFeatures: Set<DeviceStreamingFeature>)
 }
 
-public extension PolarBleApiDeviceFeaturesObserver {
-    func biozFeatureReady(_ identifier: String) {
-        // default empty
-    }
+/// SDK Mode observer
+public protocol PolarBleApiSdkModeFeatureObserver: AnyObject {
+    /// sdk mode feature available in this device and ready for usage callback
+    func sdkModeFeatureAvailable(_ identifier: String)
 }
 
 /// logger observer
-public protocol PolarBleApiLogger: class {
+public protocol PolarBleApiLogger: AnyObject {
     
     /// log message from sdk
     ///
@@ -121,6 +100,6 @@ public protocol PolarBleApiLogger: class {
 }
 
 /// observer for ccc write enable
-public protocol PolarBleApiCCCWriteObserver: class {
+public protocol PolarBleApiCCCWriteObserver: AnyObject {
     func cccWrite(_ address: UUID, characteristic: CBUUID)
 }

@@ -46,10 +46,10 @@ public protocol BleDeviceListener{
     ///
     /// - Parameters:
     ///   - uuids: optional list of services, to look for from corebluetooth
-    ///   - identifiers: device identifiers to look for from corebluetooth
-    ///   - preFilter: pre filter before memory allocation, for pref reason
+    ///   - identifiers: optional list of device identifiers to look for from corebluetooth
+    ///   - preFilter: pre filter before memory allocation, for performance reason
     /// - Returns: Observable stream of device advertisements
-    func search(_ uuids: [CBUUID]?, identifiers: [UUID]?)  -> Observable<BleDeviceSession>
+    func search(_ uuids: [CBUUID]?, identifiers: [UUID]?, fetchKnownDevices: Bool)  -> Observable<BleDeviceSession>
     
     /// Start connection request for device, callbacks are informed to monitorDeviceSessionState or
     /// deviceSessionStateObserver
@@ -61,12 +61,12 @@ public protocol BleDeviceListener{
     /// all session state changes, deprecated
     ///
     /// - Returns: Observable stream
-    @available(*, deprecated, message: "use deviceSessionStateObserver instead")
     func monitorDeviceSessionState() -> Observable<(session: BleDeviceSession, state: BleDeviceSession.DeviceSessionState)>
 
     /// all session state changes
     ///
     /// - Returns: Observable stream
+    @available(*, deprecated, message: "use monitorDeviceSessionState instead")
     var deviceSessionStateObserver: BleDeviceSessionStateObserver? {get set}
     
     /// Start disconnection request for device, callbacks are informed to monitorDeviceSessionState or
@@ -91,17 +91,17 @@ public protocol BleDeviceListener{
     func allSessions() -> [BleDeviceSession]
 }
 
-public protocol BleDeviceSessionStateObserver {
+public protocol BleDeviceSessionStateObserver: AnyObject {
     func stateChanged(_ session: BleDeviceSession)
 }
 
-public protocol BlePowerStateObserver {
+public protocol BlePowerStateObserver: AnyObject {
     func powerStateChanged(_ state: BleState)
 }
 
 public extension BleDeviceListener {
-    func search(_ uuids: [CBUUID]? = nil, identifiers: [UUID]?=nil)  -> Observable<BleDeviceSession> {
-        return search(uuids, identifiers: identifiers)
+    func search(_ uuids: [CBUUID]? = nil, identifiers: [UUID]?=nil, fetchKnownDevices: Bool = false)  -> Observable<BleDeviceSession> {
+        return search(uuids, identifiers: identifiers, fetchKnownDevices: fetchKnownDevices)
     }
 }
 
@@ -120,6 +120,8 @@ public extension Observable where Element: Hashable {
                 set.insert(element)
                 return Observable<Element>.just(element)
             }
-        }
+        }.do(onDispose:  {
+            set = Set<Element>()
+        })
     }
 }

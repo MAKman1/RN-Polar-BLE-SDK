@@ -1,0 +1,3 @@
+[submodule "polar-ble"]
+	path = polar-ble
+	url = https://github.com/polarofficial/polar-ble-sdk.git

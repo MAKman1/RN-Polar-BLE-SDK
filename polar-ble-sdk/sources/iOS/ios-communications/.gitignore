@@ -1,0 +1,10 @@
+.DS_Store
+xcuserdata/
+!Carthage/
+Carthage/*
+!Carthage/Build/
+Carthage/Build/*
+!Carthage/Build/RxSwift.xcframework/
+!Carthage/Build/RxBlocking.xcframework/
+!Carthage/Build/RxTest.xcframework/
+Carthage/Checkouts/

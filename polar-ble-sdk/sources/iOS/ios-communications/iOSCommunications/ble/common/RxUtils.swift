@@ -15,7 +15,7 @@ class RxUtils {
     
     static func postErrorOnSingleAndClearList<T>(_ list: AtomicList<RxObserverSingle<T>>, error: Error) {
         list.list().forEach { (object) in
-            object.obs(.error(error))
+            object.obs(.failure(error))
         }
         list.removeAll()
     }
@@ -26,7 +26,7 @@ class RxUtils {
         }
         list.removeAll()
     }
-
+    
     /// helper to emit next object
     static func emitNext<T>(_ list: AtomicList<T>, emitter: (_ item: T) -> Void ) {
         let objects = list.list()
