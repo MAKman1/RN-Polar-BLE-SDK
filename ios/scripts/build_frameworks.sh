@@ -28,7 +28,7 @@ source ./carthage.sh
 echo "building now..... 1"
 
 # then go to PolarBleSdk source folder
-cd ../../polar-ble-sdk/sources/iOS/ios-communications
+cd polar-ble-sdk/sources/iOS/ios-communications
 
 echo "building now..... 2"
 
